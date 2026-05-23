@@ -1,0 +1,26 @@
+enum ColorPiel {
+  PIEL
+  AMARILLO
+  ROJO
+  PURPURA
+  PRIETO
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Rabanoide {
+  id        Int       @id @default(autoincrement())
+  colorpiel ColorPiel @default(PIEL)
+}
+
+model Item {
+  id     Int @id @default(autoincrement())
+  itemId Int
+}
