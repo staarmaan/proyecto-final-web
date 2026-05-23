@@ -6,6 +6,14 @@ enum ColorPiel {
   PRIETO
 }
 
+enum ColorTallo {
+  VERDE
+  AZUL
+  NARANJA
+  AMARILLO
+  ROJO
+}
+
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -16,8 +24,17 @@ datasource db {
 }
 
 model Rabanoide {
-  id        Int       @id @default(autoincrement())
-  colorpiel ColorPiel @default(PIEL)
+  id             Int        @id @default(autoincrement())
+  colorpiel      ColorPiel  @default(PIEL)
+  colortallo     ColorTallo @default(VERDE)
+  hiperactividad Decimal    @default(0.5)
+  defensa        Decimal    @default(0.5)
+  regeneracion   Decimal    @default(0.5)
+  damage         Decimal    @default(0.5)
+  velocidad      Decimal    @default(0.5)
+  saltoaltura    Decimal    @default(0.5)
+  inteligencia   Decimal    @default(0.5)
+  autocombustion Decimal    @default(0.5)
 }
 
 model Item {

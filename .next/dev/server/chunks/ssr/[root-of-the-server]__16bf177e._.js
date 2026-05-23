@@ -51,7 +51,7 @@ const config = {
     "clientVersion": "7.8.0",
     "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
     "activeProvider": "postgresql",
-    "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id        String   @id @default(cuid())\n  email     String   @unique\n  name      String?\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
+    "inlineSchema": "enum ColorPiel {\n  PIEL\n  AMARILLO\n  ROJO\n  PURPURA\n  PRIETO\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Rabanoide {\n  id        Int       @id @default(autoincrement())\n  colorpiel ColorPiel @default(PIEL)\n}\n\nmodel Item {\n  id     Int @id @default(autoincrement())\n  itemId Int\n}\n\n//a\n",
     "runtimeDataModel": {
         "models": {},
         "enums": {},
@@ -62,10 +62,10 @@ const config = {
         "graph": ""
     }
 };
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}");
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Rabanoide\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"colorpiel\",\"kind\":\"enum\",\"type\":\"ColorPiel\"}],\"dbName\":null},\"Item\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"itemId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}");
 config.parameterizationSchema = {
-    strings: JSON.parse("[\"where\",\"User.findUnique\",\"User.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"User.findFirst\",\"User.findFirstOrThrow\",\"User.findMany\",\"data\",\"User.createOne\",\"User.createMany\",\"User.createManyAndReturn\",\"User.updateOne\",\"User.updateMany\",\"User.updateManyAndReturn\",\"create\",\"update\",\"User.upsertOne\",\"User.deleteOne\",\"User.deleteMany\",\"having\",\"_count\",\"_min\",\"_max\",\"User.groupBy\",\"User.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"email\",\"name\",\"createdAt\",\"updatedAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\"]"),
-    graph: "MAkQCBoAACYAMBsAAAQAEBwAACYAMB0BAAAAAR4BAAAAAR8BACgAISBAACkAISFAACkAIQEAAAABACABAAAAAQAgCBoAACYAMBsAAAQAEBwAACYAMB0BACcAIR4BACcAIR8BACgAISBAACkAISFAACkAIQEfAAAqACADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAFHQEAAAABHgEAAAABHwEAAAABIEAAAAABIUAAAAABAQgAAAkAIAUdAQAAAAEeAQAAAAEfAQAAAAEgQAAAAAEhQAAAAAEBCAAACwAwAQgAAAsAMAUdAQAuACEeAQAuACEfAQAvACEgQAAwACEhQAAwACECAAAAAQAgCAAADgAgBR0BAC4AIR4BAC4AIR8BAC8AISBAADAAISFAADAAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBBUAACsAIBYAAC0AIBcAACwAIB8AACoAIAgaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfAQAcACEgQAAdACEhQAAdACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAgaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfAQAcACEgQAAdACEhQAAdACEOFQAAHwAgFgAAJQAgFwAAJQAgIgEAAAABIwEAAAAEJAEAAAAEJQEAAAABJgEAAAABJwEAAAABKAEAAAABKQEAJAAhKgEAAAABKwEAAAABLAEAAAABDhUAACIAIBYAACMAIBcAACMAICIBAAAAASMBAAAABSQBAAAABSUBAAAAASYBAAAAAScBAAAAASgBAAAAASkBACEAISoBAAAAASsBAAAAASwBAAAAAQsVAAAfACAWAAAgACAXAAAgACAiQAAAAAEjQAAAAAQkQAAAAAQlQAAAAAEmQAAAAAEnQAAAAAEoQAAAAAEpQAAeACELFQAAHwAgFgAAIAAgFwAAIAAgIkAAAAABI0AAAAAEJEAAAAAEJUAAAAABJkAAAAABJ0AAAAABKEAAAAABKUAAHgAhCCICAAAAASMCAAAABCQCAAAABCUCAAAAASYCAAAAAScCAAAAASgCAAAAASkCAB8AIQgiQAAAAAEjQAAAAAQkQAAAAAQlQAAAAAEmQAAAAAEnQAAAAAEoQAAAAAEpQAAgACEOFQAAIgAgFgAAIwAgFwAAIwAgIgEAAAABIwEAAAAFJAEAAAAFJQEAAAABJgEAAAABJwEAAAABKAEAAAABKQEAIQAhKgEAAAABKwEAAAABLAEAAAABCCICAAAAASMCAAAABSQCAAAABSUCAAAAASYCAAAAAScCAAAAASgCAAAAASkCACIAIQsiAQAAAAEjAQAAAAUkAQAAAAUlAQAAAAEmAQAAAAEnAQAAAAEoAQAAAAEpAQAjACEqAQAAAAErAQAAAAEsAQAAAAEOFQAAHwAgFgAAJQAgFwAAJQAgIgEAAAABIwEAAAAEJAEAAAAEJQEAAAABJgEAAAABJwEAAAABKAEAAAABKQEAJAAhKgEAAAABKwEAAAABLAEAAAABCyIBAAAAASMBAAAABCQBAAAABCUBAAAAASYBAAAAAScBAAAAASgBAAAAASkBACUAISoBAAAAASsBAAAAASwBAAAAAQgaAAAmADAbAAAEABAcAAAmADAdAQAnACEeAQAnACEfAQAoACEgQAApACEhQAApACELIgEAAAABIwEAAAAEJAEAAAAEJQEAAAABJgEAAAABJwEAAAABKAEAAAABKQEAJQAhKgEAAAABKwEAAAABLAEAAAABCyIBAAAAASMBAAAABSQBAAAABSUBAAAAASYBAAAAAScBAAAAASgBAAAAASkBACMAISoBAAAAASsBAAAAASwBAAAAAQgiQAAAAAEjQAAAAAQkQAAAAAQlQAAAAAEmQAAAAAEnQAAAAAEoQAAAAAEpQAAgACEAAAAAAS0BAAAAAQEtAQAAAAEBLUAAAAABAAAAAAMVAAYWAAcXAAgAAAADFQAGFgAHFwAIAQIBAgMBBQYBBgcBBwgBCQoBCgwCCw0DDA8BDRECDhIEERMBEhQBExUCGBgFGRkJ"
+    strings: JSON.parse("[\"where\",\"Rabanoide.findUnique\",\"Rabanoide.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Rabanoide.findFirst\",\"Rabanoide.findFirstOrThrow\",\"Rabanoide.findMany\",\"data\",\"Rabanoide.createOne\",\"Rabanoide.createMany\",\"Rabanoide.createManyAndReturn\",\"Rabanoide.updateOne\",\"Rabanoide.updateMany\",\"Rabanoide.updateManyAndReturn\",\"create\",\"update\",\"Rabanoide.upsertOne\",\"Rabanoide.deleteOne\",\"Rabanoide.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Rabanoide.groupBy\",\"Rabanoide.aggregate\",\"Item.findUnique\",\"Item.findUniqueOrThrow\",\"Item.findFirst\",\"Item.findFirstOrThrow\",\"Item.findMany\",\"Item.createOne\",\"Item.createMany\",\"Item.createManyAndReturn\",\"Item.updateOne\",\"Item.updateMany\",\"Item.updateManyAndReturn\",\"Item.upsertOne\",\"Item.deleteOne\",\"Item.deleteMany\",\"Item.groupBy\",\"Item.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"itemId\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"ColorPiel\",\"colorpiel\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+    graph: "SxUgBSwAAD4AMC0AAAQAEC4AAD4AMC8CAAAAAToAAD86IgEAAAABACABAAAAAQAgBSwAAD4AMC0AAAQAEC4AAD4AMC8CADkAIToAAD86IgADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACACLwIAAAABOgAAADoCAQgAAAkAIAIvAgAAAAE6AAAAOgIBCAAACwAwAQgAAAsAMAIvAgBFACE6AABLOiICAAAAAQAgCAAADgAgAi8CAEUAIToAAEs6IgIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAAEYAIBYAAEcAIBcAAEoAIBgAAEkAIBkAAEgAIAUsAAA6ADAtAAAXABAuAAA6ADAvAgA0ACE6AAA7OiIDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAUsAAA4ADAtAAAdABAuAAA4ADAvAgAAAAEwAgA5ACEBAAAAGgAgAQAAABoAIAUsAAA4ADAtAAAdABAuAAA4ADAvAgA5ACEwAgA5ACEAAwAAAB0AIAMAAB4AMAQAABoAIAMAAAAdACADAAAeADAEAAAaACADAAAAHQAgAwAAHgAwBAAAGgAgAi8CAAAAATACAAAAAQEIAAAiACACLwIAAAABMAIAAAABAQgAACQAMAEIAAAkADACLwIARQAhMAIARQAhAgAAABoAIAgAACcAIAIvAgBFACEwAgBFACECAAAAHQAgCAAAKQAgAgAAAB0AIAgAACkAIAMAAAAaACAPAAAiACAQAAAnACABAAAAGgAgAQAAAB0AIAUVAABAACAWAABBACAXAABEACAYAABDACAZAABCACAFLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAIANAAhAwAAAB0AIAMAAC8AMBQAADAAIAMAAAAdACADAAAeADAEAAAaACAFLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAIANAAhDRUAADYAIBYAADcAIBcAADYAIBgAADYAIBkAADYAIDECAAAAATICAAAABDMCAAAABDQCAAAAATUCAAAAATYCAAAAATcCAAAAATgCADUAIQ0VAAA2ACAWAAA3ACAXAAA2ACAYAAA2ACAZAAA2ACAxAgAAAAEyAgAAAAQzAgAAAAQ0AgAAAAE1AgAAAAE2AgAAAAE3AgAAAAE4AgA1ACEIMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABOAIANgAhCDEIAAAAATIIAAAABDMIAAAABDQIAAAAATUIAAAAATYIAAAAATcIAAAAATgIADcAIQUsAAA4ADAtAAAdABAuAAA4ADAvAgA5ACEwAgA5ACEIMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABOAIANgAhBSwAADoAMC0AABcAEC4AADoAMC8CADQAIToAADs6IgcVAAA2ACAYAAA9ACAZAAA9ACAxAAAAOgIyAAAAOggzAAAAOgg4AAA8OiIHFQAANgAgGAAAPQAgGQAAPQAgMQAAADoCMgAAADoIMwAAADoIOAAAPDoiBDEAAAA6AjIAAAA6CDMAAAA6CDgAAD06IgUsAAA-ADAtAAAEABAuAAA-ADAvAgA5ACE6AAA_OiIEMQAAADoCMgAAADoIMwAAADoIOAAAPToiAAAAAAAFOwIAAAABPAIAAAABPQIAAAABPgIAAAABPwIAAAABAAAAAAABOwAAADoCAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAFFQAQFgARFwASGAATGQAUAAAAAAAFFQAQFgARFwASGAATGQAUAQIBAgMBBQYBBgcBBwgBCQoBCgwCCw0DDA8BDRECDhIEERMBEhQBExUCGhgFGxkLHBsMHRwMHh8MHyAMICEMISMMIiUCIyYNJCgMJSoCJisOJywMKC0MKS4CKjEPKzIV"
 };
 async function decodeBase64AsWasm(wasmBase64) {
     const { Buffer } = await __turbopack_context__.A("[externals]/node:buffer [external] (node:buffer, cjs, async loader)");
@@ -94,14 +94,14 @@ __turbopack_context__.s([
     ()=>DbNull,
     "Decimal",
     ()=>Decimal,
+    "ItemScalarFieldEnum",
+    ()=>ItemScalarFieldEnum,
     "JsonNull",
     ()=>JsonNull,
     "ModelName",
     ()=>ModelName,
     "NullTypes",
     ()=>NullTypes,
-    "NullsOrder",
-    ()=>NullsOrder,
     "PrismaClientInitializationError",
     ()=>PrismaClientInitializationError,
     "PrismaClientKnownRequestError",
@@ -112,16 +112,14 @@ __turbopack_context__.s([
     ()=>PrismaClientUnknownRequestError,
     "PrismaClientValidationError",
     ()=>PrismaClientValidationError,
-    "QueryMode",
-    ()=>QueryMode,
+    "RabanoideScalarFieldEnum",
+    ()=>RabanoideScalarFieldEnum,
     "SortOrder",
     ()=>SortOrder,
     "Sql",
     ()=>Sql,
     "TransactionIsolationLevel",
     ()=>TransactionIsolationLevel,
-    "UserScalarFieldEnum",
-    ()=>UserScalarFieldEnum,
     "defineExtension",
     ()=>defineExtension,
     "empty",
@@ -176,7 +174,8 @@ const DbNull = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$cli
 const JsonNull = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f40$prisma$2f$client$29$__["JsonNull"];
 const AnyNull = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f40$prisma$2f$client$29$__["AnyNull"];
 const ModelName = {
-    User: 'User'
+    Rabanoide: 'Rabanoide',
+    Item: 'Item'
 };
 const TransactionIsolationLevel = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f40$prisma$2f$client$29$__["makeStrictEnum"]({
     ReadUncommitted: 'ReadUncommitted',
@@ -184,24 +183,17 @@ const TransactionIsolationLevel = __TURBOPACK__imported__module__$5b$externals$5
     RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
 });
-const UserScalarFieldEnum = {
+const RabanoideScalarFieldEnum = {
     id: 'id',
-    email: 'email',
-    name: 'name',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    colorpiel: 'colorpiel'
+};
+const ItemScalarFieldEnum = {
+    id: 'id',
+    itemId: 'itemId'
 };
 const SortOrder = {
     asc: 'asc',
     desc: 'desc'
-};
-const QueryMode = {
-    default: 'default',
-    insensitive: 'insensitive'
-};
-const NullsOrder = {
-    first: 'first',
-    last: 'last'
 };
 const defineExtension = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f40$prisma$2f$client$29$__["Extensions"].defineExtension;
 }),
@@ -214,9 +206,17 @@ const defineExtension = __TURBOPACK__imported__module__$5b$externals$5d2f40$pris
 * This file exports all enum related types from the schema.
 *
 * 🟢 You can import this file directly.
-*/ // This file is empty because there are no enums in the schema.
-__turbopack_context__.s([]);
-;
+*/ __turbopack_context__.s([
+    "ColorPiel",
+    ()=>ColorPiel
+]);
+const ColorPiel = {
+    PIEL: 'PIEL',
+    AMARILLO: 'AMARILLO',
+    ROJO: 'ROJO',
+    PURPURA: 'PURPURA',
+    PRIETO: 'PRIETO'
+};
 }),
 "[project]/Desktop/tareas/desweb/proyecto-final-web/src/generated/prisma/client.ts [app-rsc] (ecmascript) <locals>", ((__turbopack_context__) => {
 "use strict";

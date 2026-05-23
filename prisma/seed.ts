@@ -1,26 +1,28 @@
 import prisma from "../src/lib/prisma";
 
 async function main() {
-  const users = await Promise.all([
-    prisma.user.upsert({
-      where: { email: "alice@prisma.io" },
-      update: { name: "Alice" },
-      create: {
-        email: "alice@prisma.io",
-        name: "Alice",
-      },
+  const rabanoides = await Promise.all([
+    prisma.rabanoide.create({
+      data: { colorpiel: "PIEL" },
     }),
-    prisma.user.upsert({
-      where: { email: "bob@prisma.io" },
-      update: { name: "Bob" },
-      create: {
-        email: "bob@prisma.io",
-        name: "Bob",
-      },
+    prisma.rabanoide.create({
+      data: { colorpiel: "ROJO" },
+    }),
+    prisma.rabanoide.create({
+      data: { colorpiel: "AMARILLO" },
     }),
   ]);
 
-  console.log(`Seeded ${users.length} users.`);
+  const items = await Promise.all([
+    prisma.item.create({
+      data: { itemId: 1 },
+    }),
+    prisma.item.create({
+      data: { itemId: 2 },
+    }),
+  ]);
+
+  console.log(`Seeded ${rabanoides.length} rabanoides and ${items.length} items.`);
 }
 
 main()

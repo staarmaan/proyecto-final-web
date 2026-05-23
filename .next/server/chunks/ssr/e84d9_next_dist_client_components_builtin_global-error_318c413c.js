@@ -1,0 +1,3 @@
+module.exports=[86485,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(58862);a.n(d("[project]/Desktop/tareas/desweb/proyecto-final-web/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},77055,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(58862);a.n(d("[project]/Desktop/tareas/desweb/proyecto-final-web/node_modules/next/dist/client/components/builtin/global-error.js"))},40862,a=>{"use strict";a.i(86485);var b=a.i(77055);a.n(b)}];
+
+//# sourceMappingURL=e84d9_next_dist_client_components_builtin_global-error_318c413c.js.map

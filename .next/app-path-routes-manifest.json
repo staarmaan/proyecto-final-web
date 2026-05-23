@@ -1,0 +1,10 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/items/[id]/route": "/api/items/[id]",
+  "/api/items/route": "/api/items",
+  "/api/rabanoides/[id]/route": "/api/rabanoides/[id]",
+  "/api/rabanoides/route": "/api/rabanoides",
+  "/page": "/",
+  "/test/page": "/test"
+}
