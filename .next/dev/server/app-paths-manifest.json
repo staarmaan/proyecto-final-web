@@ -1,1 +1,4 @@
-{}
+{
+  "/api/rabanoides/route": "app/api/rabanoides/route.js",
+  "/test/page": "app/test/page.js"
+}

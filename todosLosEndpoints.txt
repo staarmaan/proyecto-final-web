@@ -1,0 +1,23 @@
+Base URL: https://proyecto-final-web-g9sz.vercel.app
+
+PAGES
+  GET  https://proyecto-final-web-g9sz.vercel.app/            Home page (server-rendered)
+  GET  https://proyecto-final-web-g9sz.vercel.app/test        CRUD test page (client-side UI)
+
+API - RABANOIDES
+  GET    https://proyecto-final-web-g9sz.vercel.app/api/rabanoides            List all
+  POST   https://proyecto-final-web-g9sz.vercel.app/api/rabanoides            Create one        Body: {"colorpiel": "ROJO"}
+  GET    https://proyecto-final-web-g9sz.vercel.app/api/rabanoides/:id        Get by ID
+  PUT    https://proyecto-final-web-g9sz.vercel.app/api/rabanoides/:id        Update one         Body: {"colorpiel": "AMARILLO"}
+  DELETE https://proyecto-final-web-g9sz.vercel.app/api/rabanoides/:id        Delete by ID
+
+API - ITEMS
+  GET    https://proyecto-final-web-g9sz.vercel.app/api/items                 List all
+  POST   https://proyecto-final-web-g9sz.vercel.app/api/items                 Create one        Body: {"itemId": 42}
+  GET    https://proyecto-final-web-g9sz.vercel.app/api/items/:id             Get by ID
+  PUT    https://proyecto-final-web-g9sz.vercel.app/api/items/:id             Update one         Body: {"itemId": 99}
+  DELETE https://proyecto-final-web-g9sz.vercel.app/api/items/:id             Delete by ID
+
+ColorPiel enum values: PIEL, AMARILLO, ROJO, PURPURA, PRIETO
+
+All endpoints accept and return JSON.
