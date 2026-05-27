@@ -1,4 +1,4 @@
-Base URL: https://proyecto-final-web-g9sz.vercel.app
+lBase URL: https://proyecto-final-web-g9sz.vercel.app
 
 PAGES
   GET  https://proyecto-final-web-g9sz.vercel.app/            Home page (server-rendered)

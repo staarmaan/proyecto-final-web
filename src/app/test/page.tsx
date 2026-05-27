@@ -6,7 +6,9 @@ type Model = "rabanoides" | "items";
 
 interface Rabanoide {
   id: number;
+  nombre: string;
   colorpiel: string;
+  colortallo: string;
 }
 
 interface Item {
@@ -17,6 +19,7 @@ interface Item {
 type Record = Rabanoide | Item;
 
 const COLOR_PIEL_OPTIONS = ["PIEL", "AMARILLO", "ROJO", "PURPURA", "PRIETO"];
+const COLOR_TALLO_OPTIONS = ["VERDE", "AZUL", "NARANJA", "AMARILLO", "ROJO"];
 
 const API_BASE = "/api";
 
@@ -199,7 +202,9 @@ export default function TestPage() {
   const [records, setRecords] = useState<Record[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
 
+  const [nombre, setNombre] = useState("");
   const [colorpiel, setColorpiel] = useState("PIEL");
+  const [colortallo, setColortallo] = useState("VERDE");
   const [itemId, setItemId] = useState("");
 
   const [error, setError] = useState("");
@@ -209,7 +214,9 @@ export default function TestPage() {
 
   const resetForm = useCallback(() => {
     setEditingId(null);
+    setNombre("");
     setColorpiel("PIEL");
+    setColortallo("VERDE");
     setItemId("");
     setError("");
   }, []);
@@ -233,7 +240,9 @@ export default function TestPage() {
   function populateEdit(r: Record) {
     setEditingId(r.id);
     if (isRabanoide(r)) {
+      setNombre(r.nombre);
       setColorpiel(r.colorpiel);
+      setColortallo(r.colortallo);
     } else {
       setItemId(String(r.itemId));
     }
@@ -245,7 +254,9 @@ export default function TestPage() {
     setLoading(true);
     try {
       const body =
-        model === "rabanoides" ? { colorpiel } : { itemId: Number(itemId) };
+        model === "rabanoides"
+          ? { nombre, colorpiel, colortallo }
+          : { itemId: Number(itemId) };
       const res = await fetch(`${API_BASE}/${model}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -267,7 +278,9 @@ export default function TestPage() {
     setLoading(true);
     try {
       const body =
-        model === "rabanoides" ? { colorpiel } : { itemId: Number(itemId) };
+        model === "rabanoides"
+          ? { nombre, colorpiel, colortallo }
+          : { itemId: Number(itemId) };
       const res = await fetch(`${API_BASE}/${model}/${editingId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -298,12 +311,13 @@ export default function TestPage() {
   }
 
   function recordLabel(r: Record): string {
-    if (isRabanoide(r)) return `Color: ${r.colorpiel}`;
-    return `ItemId: ${r.itemId}`;
+    if (isRabanoide(r))
+      return `#${r.id} ${r.nombre} — piel:${r.colorpiel} tallo:${r.colortallo}`;
+    return `#${r.id} ItemId: ${r.itemId}`;
   }
 
   function recordValue(r: Record): string {
-    if (isRabanoide(r)) return r.colorpiel;
+    if (isRabanoide(r)) return r.nombre;
     return String(r.itemId);
   }
 
@@ -334,20 +348,50 @@ export default function TestPage() {
           </p>
 
           {model === "rabanoides" ? (
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Colorpiel</label>
-              <select
-                style={styles.select}
-                value={colorpiel}
-                onChange={(e) => setColorpiel(e.target.value)}
-              >
-                {COLOR_PIEL_OPTIONS.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Nombre</label>
+                {isEditing ? (
+                  <p style={{ ...styles.recordValue, margin: 0 }}>{nombre}</p>
+                ) : (
+                  <input
+                    style={styles.input}
+                    type="text"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    placeholder="Enter name"
+                  />
+                )}
+              </div>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Colorpiel</label>
+                <select
+                  style={styles.select}
+                  value={colorpiel}
+                  onChange={(e) => setColorpiel(e.target.value)}
+                >
+                  {COLOR_PIEL_OPTIONS.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Colortallo</label>
+                <select
+                  style={styles.select}
+                  value={colortallo}
+                  onChange={(e) => setColortallo(e.target.value)}
+                >
+                  {COLOR_TALLO_OPTIONS.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
           ) : (
             <div style={styles.formGroup}>
               <label style={styles.label}>Item ID</label>
@@ -382,7 +426,7 @@ export default function TestPage() {
               <button
                 style={styles.button("primary")}
                 onClick={handleCreate}
-                disabled={loading}
+                disabled={loading || (model === "rabanoides" && !nombre.trim())}
               >
                 {loading ? "Creating..." : "Create"}
               </button>
@@ -406,7 +450,6 @@ export default function TestPage() {
               {records.map((r) => (
                 <li key={r.id} style={styles.recordItem}>
                   <div style={styles.recordInfo}>
-                    <span style={styles.recordId}>#{r.id}</span>
                     <span style={styles.recordValue}>{recordLabel(r)}</span>
                   </div>
                   <div style={styles.recordActions}>

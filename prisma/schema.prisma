@@ -25,6 +25,7 @@ datasource db {
 
 model Rabanoide {
   id             Int        @id @default(autoincrement())
+  nombre         String
   colorpiel      ColorPiel  @default(PIEL)
   colortallo     ColorTallo @default(VERDE)
   hiperactividad Decimal    @default(0.5)
