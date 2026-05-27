@@ -3,13 +3,13 @@ import prisma from "../src/lib/prisma";
 async function main() {
   const rabanoides = await Promise.all([
     prisma.rabanoide.create({
-      data: { colorpiel: "PIEL" },
+      data: { nombre: "Rabanoide 1", colorpiel: "PIEL", colortallo: "VERDE" },
     }),
     prisma.rabanoide.create({
-      data: { colorpiel: "ROJO" },
+      data: { nombre: "Rabanoide 2", colorpiel: "ROJO", colortallo: "AZUL" },
     }),
     prisma.rabanoide.create({
-      data: { colorpiel: "AMARILLO" },
+      data: { nombre: "Rabanoide 3", colorpiel: "AMARILLO", colortallo: "NARANJA" },
     }),
   ]);
 
