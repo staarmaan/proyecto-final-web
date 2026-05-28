@@ -99,7 +99,7 @@ const config = {
     "clientVersion": "7.8.0",
     "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
     "activeProvider": "postgresql",
-    "inlineSchema": "enum ColorPiel {\n  PIEL\n  AMARILLO\n  ROJO\n  PURPURA\n  PRIETO\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Rabanoide {\n  id        Int       @id @default(autoincrement())\n  colorpiel ColorPiel @default(PIEL)\n}\n\nmodel Item {\n  id     Int @id @default(autoincrement())\n  itemId Int\n}\n\n//a\n",
+    "inlineSchema": "enum ColorPiel {\n  PIEL\n  AMARILLO\n  ROJO\n  PURPURA\n  PRIETO\n}\n\nenum ColorTallo {\n  VERDE\n  AZUL\n  NARANJA\n  AMARILLO\n  ROJO\n}\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Rabanoide {\n  id             Int        @id @default(autoincrement())\n  nombre         String\n  colorpiel      ColorPiel  @default(PIEL)\n  colortallo     ColorTallo @default(VERDE)\n  hiperactividad Decimal    @default(0.5)\n  defensa        Decimal    @default(0.5)\n  regeneracion   Decimal    @default(0.5)\n  damage         Decimal    @default(0.5)\n  velocidad      Decimal    @default(0.5)\n  saltoaltura    Decimal    @default(0.5)\n  inteligencia   Decimal    @default(0.5)\n  autocombustion Decimal    @default(0.5)\n}\n\nmodel Item {\n  id     Int @id @default(autoincrement())\n  /// Must be an integer between 0 and 12\n  itemId Int\n}\n\n//a\n",
     "runtimeDataModel": {
         "models": {},
         "enums": {},
@@ -110,10 +110,10 @@ const config = {
         "graph": ""
     }
 };
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Rabanoide\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"colorpiel\",\"kind\":\"enum\",\"type\":\"ColorPiel\"}],\"dbName\":null},\"Item\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"itemId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}");
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Rabanoide\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nombre\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"colorpiel\",\"kind\":\"enum\",\"type\":\"ColorPiel\"},{\"name\":\"colortallo\",\"kind\":\"enum\",\"type\":\"ColorTallo\"},{\"name\":\"hiperactividad\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"defensa\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"regeneracion\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"damage\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"velocidad\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"saltoaltura\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"inteligencia\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"autocombustion\",\"kind\":\"scalar\",\"type\":\"Decimal\"}],\"dbName\":null},\"Item\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"itemId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}");
 config.parameterizationSchema = {
-    strings: JSON.parse("[\"where\",\"Rabanoide.findUnique\",\"Rabanoide.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Rabanoide.findFirst\",\"Rabanoide.findFirstOrThrow\",\"Rabanoide.findMany\",\"data\",\"Rabanoide.createOne\",\"Rabanoide.createMany\",\"Rabanoide.createManyAndReturn\",\"Rabanoide.updateOne\",\"Rabanoide.updateMany\",\"Rabanoide.updateManyAndReturn\",\"create\",\"update\",\"Rabanoide.upsertOne\",\"Rabanoide.deleteOne\",\"Rabanoide.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Rabanoide.groupBy\",\"Rabanoide.aggregate\",\"Item.findUnique\",\"Item.findUniqueOrThrow\",\"Item.findFirst\",\"Item.findFirstOrThrow\",\"Item.findMany\",\"Item.createOne\",\"Item.createMany\",\"Item.createManyAndReturn\",\"Item.updateOne\",\"Item.updateMany\",\"Item.updateManyAndReturn\",\"Item.upsertOne\",\"Item.deleteOne\",\"Item.deleteMany\",\"Item.groupBy\",\"Item.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"itemId\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"ColorPiel\",\"colorpiel\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
-    graph: "SxUgBSwAAD4AMC0AAAQAEC4AAD4AMC8CAAAAAToAAD86IgEAAAABACABAAAAAQAgBSwAAD4AMC0AAAQAEC4AAD4AMC8CADkAIToAAD86IgADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACACLwIAAAABOgAAADoCAQgAAAkAIAIvAgAAAAE6AAAAOgIBCAAACwAwAQgAAAsAMAIvAgBFACE6AABLOiICAAAAAQAgCAAADgAgAi8CAEUAIToAAEs6IgIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAAEYAIBYAAEcAIBcAAEoAIBgAAEkAIBkAAEgAIAUsAAA6ADAtAAAXABAuAAA6ADAvAgA0ACE6AAA7OiIDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAUsAAA4ADAtAAAdABAuAAA4ADAvAgAAAAEwAgA5ACEBAAAAGgAgAQAAABoAIAUsAAA4ADAtAAAdABAuAAA4ADAvAgA5ACEwAgA5ACEAAwAAAB0AIAMAAB4AMAQAABoAIAMAAAAdACADAAAeADAEAAAaACADAAAAHQAgAwAAHgAwBAAAGgAgAi8CAAAAATACAAAAAQEIAAAiACACLwIAAAABMAIAAAABAQgAACQAMAEIAAAkADACLwIARQAhMAIARQAhAgAAABoAIAgAACcAIAIvAgBFACEwAgBFACECAAAAHQAgCAAAKQAgAgAAAB0AIAgAACkAIAMAAAAaACAPAAAiACAQAAAnACABAAAAGgAgAQAAAB0AIAUVAABAACAWAABBACAXAABEACAYAABDACAZAABCACAFLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAIANAAhAwAAAB0AIAMAAC8AMBQAADAAIAMAAAAdACADAAAeADAEAAAaACAFLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAIANAAhDRUAADYAIBYAADcAIBcAADYAIBgAADYAIBkAADYAIDECAAAAATICAAAABDMCAAAABDQCAAAAATUCAAAAATYCAAAAATcCAAAAATgCADUAIQ0VAAA2ACAWAAA3ACAXAAA2ACAYAAA2ACAZAAA2ACAxAgAAAAEyAgAAAAQzAgAAAAQ0AgAAAAE1AgAAAAE2AgAAAAE3AgAAAAE4AgA1ACEIMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABOAIANgAhCDEIAAAAATIIAAAABDMIAAAABDQIAAAAATUIAAAAATYIAAAAATcIAAAAATgIADcAIQUsAAA4ADAtAAAdABAuAAA4ADAvAgA5ACEwAgA5ACEIMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABOAIANgAhBSwAADoAMC0AABcAEC4AADoAMC8CADQAIToAADs6IgcVAAA2ACAYAAA9ACAZAAA9ACAxAAAAOgIyAAAAOggzAAAAOgg4AAA8OiIHFQAANgAgGAAAPQAgGQAAPQAgMQAAADoCMgAAADoIMwAAADoIOAAAPDoiBDEAAAA6AjIAAAA6CDMAAAA6CDgAAD06IgUsAAA-ADAtAAAEABAuAAA-ADAvAgA5ACE6AAA_OiIEMQAAADoCMgAAADoIMwAAADoIOAAAPToiAAAAAAAFOwIAAAABPAIAAAABPQIAAAABPgIAAAABPwIAAAABAAAAAAABOwAAADoCAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAFFQAQFgARFwASGAATGQAUAAAAAAAFFQAQFgARFwASGAATGQAUAQIBAgMBBQYBBgcBBwgBCQoBCgwCCw0DDA8BDRECDhIEERMBEhQBExUCGhgFGxkLHBsMHRwMHh8MHyAMICEMISMMIiUCIyYNJCgMJSoCJisOJywMKC0MKS4CKjEPKzIV"
+    strings: JSON.parse("[\"where\",\"Rabanoide.findUnique\",\"Rabanoide.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Rabanoide.findFirst\",\"Rabanoide.findFirstOrThrow\",\"Rabanoide.findMany\",\"data\",\"Rabanoide.createOne\",\"Rabanoide.createMany\",\"Rabanoide.createManyAndReturn\",\"Rabanoide.updateOne\",\"Rabanoide.updateMany\",\"Rabanoide.updateManyAndReturn\",\"create\",\"update\",\"Rabanoide.upsertOne\",\"Rabanoide.deleteOne\",\"Rabanoide.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Rabanoide.groupBy\",\"Rabanoide.aggregate\",\"Item.findUnique\",\"Item.findUniqueOrThrow\",\"Item.findFirst\",\"Item.findFirstOrThrow\",\"Item.findMany\",\"Item.createOne\",\"Item.createMany\",\"Item.createManyAndReturn\",\"Item.updateOne\",\"Item.updateMany\",\"Item.updateManyAndReturn\",\"Item.upsertOne\",\"Item.deleteOne\",\"Item.deleteMany\",\"Item.groupBy\",\"Item.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"itemId\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"nombre\",\"ColorPiel\",\"colorpiel\",\"ColorTallo\",\"colortallo\",\"hiperactividad\",\"defensa\",\"regeneracion\",\"damage\",\"velocidad\",\"saltoaltura\",\"inteligencia\",\"autocombustion\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+    graph: "WhUgDywAAEcAMC0AAAQAEC4AAEcAMC8CAAAAATkBAEgAITsAAEk7Ij0AAEo9Ij4QAEsAIT8QAEsAIUAQAEsAIUEQAEsAIUIQAEsAIUMQAEsAIUQQAEsAIUUQAEsAIQEAAAABACABAAAAAQAgDywAAEcAMC0AAAQAEC4AAEcAMC8CADkAITkBAEgAITsAAEk7Ij0AAEo9Ij4QAEsAIT8QAEsAIUAQAEsAIUEQAEsAIUIQAEsAIUMQAEsAIUQQAEsAIUUQAEsAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAMLwIAAAABOQEAAAABOwAAADsCPQAAAD0CPhAAAAABPxAAAAABQBAAAAABQRAAAAABQhAAAAABQxAAAAABRBAAAAABRRAAAAABAQgAAAkAIAwvAgAAAAE5AQAAAAE7AAAAOwI9AAAAPQI-EAAAAAE_EAAAAAFAEAAAAAFBEAAAAAFCEAAAAAFDEAAAAAFEEAAAAAFFEAAAAAEBCAAACwAwAQgAAAsAMAwvAgBRACE5AQBXACE7AABYOyI9AABZPSI-EABaACE_EABaACFAEABaACFBEABaACFCEABaACFDEABaACFEEABaACFFEABaACECAAAAAQAgCAAADgAgDC8CAFEAITkBAFcAITsAAFg7Ij0AAFk9Ij4QAFoAIT8QAFoAIUAQAFoAIUEQAFoAIUIQAFoAIUMQAFoAIUQQAFoAIUUQAFoAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAAFIAIBYAAFMAIBcAAFYAIBgAAFUAIBkAAFQAIA8sAAA6ADAtAAAXABAuAAA6ADAvAgA0ACE5AQA7ACE7AAA8OyI9AAA9PSI-EAA-ACE_EAA-ACFAEAA-ACFBEAA-ACFCEAA-ACFDEAA-ACFEEAA-ACFFEAA-ACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAUsAAA4ADAtAAAdABAuAAA4ADAvAgAAAAEwAgA5ACEBAAAAGgAgAQAAABoAIAUsAAA4ADAtAAAdABAuAAA4ADAvAgA5ACEwAgA5ACEAAwAAAB0AIAMAAB4AMAQAABoAIAMAAAAdACADAAAeADAEAAAaACADAAAAHQAgAwAAHgAwBAAAGgAgAi8CAAAAATACAAAAAQEIAAAiACACLwIAAAABMAIAAAABAQgAACQAMAEIAAAkADACLwIAUQAhMAIAUQAhAgAAABoAIAgAACcAIAIvAgBRACEwAgBRACECAAAAHQAgCAAAKQAgAgAAAB0AIAgAACkAIAMAAAAaACAPAAAiACAQAAAnACABAAAAGgAgAQAAAB0AIAUVAABMACAWAABNACAXAABQACAYAABPACAZAABOACAFLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAIANAAhAwAAAB0AIAMAAC8AMBQAADAAIAMAAAAdACADAAAeADAEAAAaACAFLAAAMwAwLQAAMAAQLgAAMwAwLwIANAAhMAIANAAhDRUAADYAIBYAADcAIBcAADYAIBgAADYAIBkAADYAIDECAAAAATICAAAABDMCAAAABDQCAAAAATUCAAAAATYCAAAAATcCAAAAATgCADUAIQ0VAAA2ACAWAAA3ACAXAAA2ACAYAAA2ACAZAAA2ACAxAgAAAAEyAgAAAAQzAgAAAAQ0AgAAAAE1AgAAAAE2AgAAAAE3AgAAAAE4AgA1ACEIMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABOAIANgAhCDEIAAAAATIIAAAABDMIAAAABDQIAAAAATUIAAAAATYIAAAAATcIAAAAATgIADcAIQUsAAA4ADAtAAAdABAuAAA4ADAvAgA5ACEwAgA5ACEIMQIAAAABMgIAAAAEMwIAAAAENAIAAAABNQIAAAABNgIAAAABNwIAAAABOAIANgAhDywAADoAMC0AABcAEC4AADoAMC8CADQAITkBADsAITsAADw7Ij0AAD09Ij4QAD4AIT8QAD4AIUAQAD4AIUEQAD4AIUIQAD4AIUMQAD4AIUQQAD4AIUUQAD4AIQ4VAAA2ACAYAABGACAZAABGACAxAQAAAAEyAQAAAAQzAQAAAAQ0AQAAAAE1AQAAAAE2AQAAAAE3AQAAAAE4AQBFACFGAQAAAAFHAQAAAAFIAQAAAAEHFQAANgAgGAAARAAgGQAARAAgMQAAADsCMgAAADsIMwAAADsIOAAAQzsiBxUAADYAIBgAAEIAIBkAAEIAIDEAAAA9AjIAAAA9CDMAAAA9CDgAAEE9Ig0VAAA2ACAWAABAACAXAABAACAYAABAACAZAABAACAxEAAAAAEyEAAAAAQzEAAAAAQ0EAAAAAE1EAAAAAE2EAAAAAE3EAAAAAE4EAA_ACENFQAANgAgFgAAQAAgFwAAQAAgGAAAQAAgGQAAQAAgMRAAAAABMhAAAAAEMxAAAAAENBAAAAABNRAAAAABNhAAAAABNxAAAAABOBAAPwAhCDEQAAAAATIQAAAABDMQAAAABDQQAAAAATUQAAAAATYQAAAAATcQAAAAATgQAEAAIQcVAAA2ACAYAABCACAZAABCACAxAAAAPQIyAAAAPQgzAAAAPQg4AABBPSIEMQAAAD0CMgAAAD0IMwAAAD0IOAAAQj0iBxUAADYAIBgAAEQAIBkAAEQAIDEAAAA7AjIAAAA7CDMAAAA7CDgAAEM7IgQxAAAAOwIyAAAAOwgzAAAAOwg4AABEOyIOFQAANgAgGAAARgAgGQAARgAgMQEAAAABMgEAAAAEMwEAAAAENAEAAAABNQEAAAABNgEAAAABNwEAAAABOAEARQAhRgEAAAABRwEAAAABSAEAAAABCzEBAAAAATIBAAAABDMBAAAABDQBAAAAATUBAAAAATYBAAAAATcBAAAAATgBAEYAIUYBAAAAAUcBAAAAAUgBAAAAAQ8sAABHADAtAAAEABAuAABHADAvAgA5ACE5AQBIACE7AABJOyI9AABKPSI-EABLACE_EABLACFAEABLACFBEABLACFCEABLACFDEABLACFEEABLACFFEABLACELMQEAAAABMgEAAAAEMwEAAAAENAEAAAABNQEAAAABNgEAAAABNwEAAAABOAEARgAhRgEAAAABRwEAAAABSAEAAAABBDEAAAA7AjIAAAA7CDMAAAA7CDgAAEQ7IgQxAAAAPQIyAAAAPQgzAAAAPQg4AABCPSIIMRAAAAABMhAAAAAEMxAAAAAENBAAAAABNRAAAAABNhAAAAABNxAAAAABOBAAQAAhAAAAAAAFSQIAAAABSgIAAAABSwIAAAABTAIAAAABTQIAAAABAAAAAAABSQEAAAABAUkAAAA7AgFJAAAAPQIFSRAAAAABShAAAAABSxAAAAABTBAAAAABTRAAAAABAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAFFQAQFgARFwASGAATGQAUAAAAAAAFFQAQFgARFwASGAATGQAUAQIBAgMBBQYBBgcBBwgBCQoBCgwCCw0DDA8BDRECDhIEERMBEhQBExUCGhgFGxkLHBsMHRwMHh8MHyAMICEMISMMIiUCIyYNJCgMJSoCJisOJywMKC0MKS4CKjEPKzIV"
 };
 async function decodeBase64AsWasm(wasmBase64) {
     const { Buffer } = await __turbopack_context__.A("[externals]/node:buffer [external] (node:buffer, cjs, async loader)");
@@ -160,6 +160,8 @@ __turbopack_context__.s([
     ()=>PrismaClientUnknownRequestError,
     "PrismaClientValidationError",
     ()=>PrismaClientValidationError,
+    "QueryMode",
+    ()=>QueryMode,
     "RabanoideScalarFieldEnum",
     ()=>RabanoideScalarFieldEnum,
     "SortOrder",
@@ -233,7 +235,17 @@ const TransactionIsolationLevel = __TURBOPACK__imported__module__$5b$externals$5
 });
 const RabanoideScalarFieldEnum = {
     id: 'id',
-    colorpiel: 'colorpiel'
+    nombre: 'nombre',
+    colorpiel: 'colorpiel',
+    colortallo: 'colortallo',
+    hiperactividad: 'hiperactividad',
+    defensa: 'defensa',
+    regeneracion: 'regeneracion',
+    damage: 'damage',
+    velocidad: 'velocidad',
+    saltoaltura: 'saltoaltura',
+    inteligencia: 'inteligencia',
+    autocombustion: 'autocombustion'
 };
 const ItemScalarFieldEnum = {
     id: 'id',
@@ -242,6 +254,10 @@ const ItemScalarFieldEnum = {
 const SortOrder = {
     asc: 'asc',
     desc: 'desc'
+};
+const QueryMode = {
+    default: 'default',
+    insensitive: 'insensitive'
 };
 const defineExtension = __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client$2f$runtime$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2f$runtime$2f$client$2c$__cjs$2c$__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f40$prisma$2f$client$29$__["Extensions"].defineExtension;
 }),
@@ -256,7 +272,9 @@ const defineExtension = __TURBOPACK__imported__module__$5b$externals$5d2f40$pris
 * 🟢 You can import this file directly.
 */ __turbopack_context__.s([
     "ColorPiel",
-    ()=>ColorPiel
+    ()=>ColorPiel,
+    "ColorTallo",
+    ()=>ColorTallo
 ]);
 const ColorPiel = {
     PIEL: 'PIEL',
@@ -264,6 +282,13 @@ const ColorPiel = {
     ROJO: 'ROJO',
     PURPURA: 'PURPURA',
     PRIETO: 'PRIETO'
+};
+const ColorTallo = {
+    VERDE: 'VERDE',
+    AZUL: 'AZUL',
+    NARANJA: 'NARANJA',
+    AMARILLO: 'AMARILLO',
+    ROJO: 'ROJO'
 };
 }),
 "[project]/Desktop/tareas/desweb/proyecto-final-web/src/generated/prisma/client.ts [app-route] (ecmascript) <locals>", ((__turbopack_context__) => {

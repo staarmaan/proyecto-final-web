@@ -385,6 +385,17 @@ async function PUT(request, { params }) {
     const { id } = await params;
     try {
         const body = await request.json();
+        if (body.itemId !== undefined) {
+            const itemId = Number(body.itemId);
+            if (!Number.isInteger(itemId) || itemId < 0 || itemId > 12) {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                    error: "itemId must be an integer between 0 and 12"
+                }, {
+                    status: 400
+                });
+            }
+            body.itemId = itemId;
+        }
         const item = await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].item.update({
             where: {
                 id: Number(id)

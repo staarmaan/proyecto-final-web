@@ -1,7 +1,6 @@
 var R=require("../chunks/ssr/[turbopack]_runtime.js")("server/app/page.js")
-R.c("server/chunks/ssr/Desktop_tareas_desweb_proyecto-final-web_src_lib_prisma_ts_463d8338._.js")
 R.c("server/chunks/ssr/e84d9_next_dist_c376c30d._.js")
-R.c("server/chunks/ssr/[root-of-the-server]__0ef8c6db._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__24922b62._.js")
 R.c("server/chunks/ssr/e84d9_next_dist_788f7a1e._.js")
 R.c("server/chunks/ssr/[externals]__7f148858._.js")
 R.c("server/chunks/ssr/e84d9_next_dist_client_components_builtin_global-error_318c413c.js")

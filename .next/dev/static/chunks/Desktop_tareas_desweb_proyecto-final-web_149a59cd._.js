@@ -7,7 +7,21 @@ __turbopack_context__.s([
     ()=>TestPage
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tareas/desweb/proyecto-final-web/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tareas/desweb/proyecto-final-web/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+/*itemId disponibles
+0 - Manzana verde
+1 - Manzana roja
+2 - Naranja
+3 - Platano
+4 - Cherrys
+5 - Tarta
+6 - Bate
+7 - Navaja
+8 - Revólver
+9 - Escudo
+10 - Bola de cañón
+11 - Craneo
+12 - Pinguino
+*/ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tareas/desweb/proyecto-final-web/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -18,6 +32,67 @@ const COLOR_PIEL_OPTIONS = [
     "ROJO",
     "PURPURA",
     "PRIETO"
+];
+const COLOR_TALLO_OPTIONS = [
+    "VERDE",
+    "AZUL",
+    "NARANJA",
+    "AMARILLO",
+    "ROJO"
+];
+const ITEM_OPTIONS = [
+    {
+        value: 0,
+        label: "Manzana verde"
+    },
+    {
+        value: 1,
+        label: "Manzana roja"
+    },
+    {
+        value: 2,
+        label: "Naranja"
+    },
+    {
+        value: 3,
+        label: "Platano"
+    },
+    {
+        value: 4,
+        label: "Cherrys"
+    },
+    {
+        value: 5,
+        label: "Tarta"
+    },
+    {
+        value: 6,
+        label: "Bate"
+    },
+    {
+        value: 7,
+        label: "Navaja"
+    },
+    {
+        value: 8,
+        label: "Revólver"
+    },
+    {
+        value: 9,
+        label: "Escudo"
+    },
+    {
+        value: 10,
+        label: "Bola de cañón"
+    },
+    {
+        value: 11,
+        label: "Craneo"
+    },
+    {
+        value: 12,
+        label: "Pinguino"
+    }
 ];
 const API_BASE = "/api";
 const styles = {
@@ -188,7 +263,9 @@ function TestPage() {
     const [model, setModel] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("rabanoides");
     const [records, setRecords] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [editingId, setEditingId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [nombre, setNombre] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [colorpiel, setColorpiel] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("PIEL");
+    const [colortallo, setColortallo] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("VERDE");
     const [itemId, setItemId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -196,7 +273,9 @@ function TestPage() {
     const resetForm = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "TestPage.useCallback[resetForm]": ()=>{
             setEditingId(null);
+            setNombre("");
             setColorpiel("PIEL");
+            setColortallo("VERDE");
             setItemId("");
             setError("");
         }
@@ -227,7 +306,9 @@ function TestPage() {
     function populateEdit(r) {
         setEditingId(r.id);
         if (isRabanoide(r)) {
+            setNombre(r.nombre);
             setColorpiel(r.colorpiel);
+            setColortallo(r.colortallo);
         } else {
             setItemId(String(r.itemId));
         }
@@ -238,7 +319,9 @@ function TestPage() {
         setLoading(true);
         try {
             const body = model === "rabanoides" ? {
-                colorpiel
+                nombre,
+                colorpiel,
+                colortallo
             } : {
                 itemId: Number(itemId)
             };
@@ -264,7 +347,9 @@ function TestPage() {
         setLoading(true);
         try {
             const body = model === "rabanoides" ? {
-                colorpiel
+                nombre,
+                colorpiel,
+                colortallo
             } : {
                 itemId: Number(itemId)
             };
@@ -297,12 +382,16 @@ function TestPage() {
             setError("Failed to delete record");
         }
     }
+    function itemLabel(itemId) {
+        const opt = ITEM_OPTIONS.find((o)=>o.value === itemId);
+        return opt ? `${itemId} — ${opt.label}` : String(itemId);
+    }
     function recordLabel(r) {
-        if (isRabanoide(r)) return `Color: ${r.colorpiel}`;
-        return `ItemId: ${r.itemId}`;
+        if (isRabanoide(r)) return `#${r.id} ${r.nombre} — piel:${r.colorpiel} tallo:${r.colortallo}`;
+        return `#${r.id} ${itemLabel(r.itemId)}`;
     }
     function recordValue(r) {
-        if (isRabanoide(r)) return r.colorpiel;
+        if (isRabanoide(r)) return r.nombre;
         return String(r.itemId);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -316,7 +405,7 @@ function TestPage() {
                         children: "CRUD Test"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                        lineNumber: 313,
+                        lineNumber: 361,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -328,7 +417,7 @@ function TestPage() {
                                 children: "Rabanoide"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 315,
+                                lineNumber: 363,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -337,19 +426,19 @@ function TestPage() {
                                 children: "Item"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 321,
+                                lineNumber: 369,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                        lineNumber: 314,
+                        lineNumber: 362,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                lineNumber: 312,
+                lineNumber: 360,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -366,68 +455,164 @@ function TestPage() {
                                 children: isEditing ? "Edit Record" : "New Record"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 332,
+                                lineNumber: 380,
                                 columnNumber: 11
                             }, this),
-                            model === "rabanoides" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            model === "rabanoides" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        style: styles.formGroup,
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                style: styles.label,
+                                                children: "Nombre"
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 387,
+                                                columnNumber: 17
+                                            }, this),
+                                            isEditing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                style: {
+                                                    ...styles.recordValue,
+                                                    margin: 0
+                                                },
+                                                children: nombre
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 389,
+                                                columnNumber: 19
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                style: styles.input,
+                                                type: "text",
+                                                value: nombre,
+                                                onChange: (e)=>setNombre(e.target.value),
+                                                placeholder: "Enter name"
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 391,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                        lineNumber: 386,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        style: styles.formGroup,
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                style: styles.label,
+                                                children: "Colorpiel"
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 401,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                                style: styles.select,
+                                                value: colorpiel,
+                                                onChange: (e)=>setColorpiel(e.target.value),
+                                                children: COLOR_PIEL_OPTIONS.map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                        value: c,
+                                                        children: c
+                                                    }, c, false, {
+                                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                        lineNumber: 408,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 402,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                        lineNumber: 400,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        style: styles.formGroup,
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                style: styles.label,
+                                                children: "Colortallo"
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 415,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                                style: styles.select,
+                                                value: colortallo,
+                                                onChange: (e)=>setColortallo(e.target.value),
+                                                children: COLOR_TALLO_OPTIONS.map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                        value: c,
+                                                        children: c
+                                                    }, c, false, {
+                                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                        lineNumber: 422,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 416,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                        lineNumber: 414,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 style: styles.formGroup,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                         style: styles.label,
-                                        children: "Colorpiel"
+                                        children: "Item"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                        lineNumber: 338,
+                                        lineNumber: 431,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
                                         style: styles.select,
-                                        value: colorpiel,
-                                        onChange: (e)=>setColorpiel(e.target.value),
-                                        children: COLOR_PIEL_OPTIONS.map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                value: c,
-                                                children: c
-                                            }, c, false, {
-                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                                lineNumber: 345,
-                                                columnNumber: 19
-                                            }, this))
-                                    }, void 0, false, {
-                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                        lineNumber: 339,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 337,
-                                columnNumber: 13
-                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                style: styles.formGroup,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                        style: styles.label,
-                                        children: "Item ID"
-                                    }, void 0, false, {
-                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                        lineNumber: 353,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                        style: styles.input,
-                                        type: "number",
                                         value: itemId,
                                         onChange: (e)=>setItemId(e.target.value),
-                                        placeholder: "Enter item ID"
-                                    }, void 0, false, {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                value: "",
+                                                children: "Select an item..."
+                                            }, void 0, false, {
+                                                fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                lineNumber: 437,
+                                                columnNumber: 17
+                                            }, this),
+                                            ITEM_OPTIONS.map((opt)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: opt.value,
+                                                    children: [
+                                                        opt.value,
+                                                        " — ",
+                                                        opt.label
+                                                    ]
+                                                }, opt.value, true, {
+                                                    fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                    lineNumber: 439,
+                                                    columnNumber: 19
+                                                }, this))
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                        lineNumber: 354,
+                                        lineNumber: 432,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 352,
+                                lineNumber: 430,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -441,7 +626,7 @@ function TestPage() {
                                             children: loading ? "Saving..." : "Update"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                            lineNumber: 367,
+                                            lineNumber: 450,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -450,23 +635,23 @@ function TestPage() {
                                             children: "Cancel"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                            lineNumber: 374,
+                                            lineNumber: 457,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     style: styles.button("primary"),
                                     onClick: handleCreate,
-                                    disabled: loading,
+                                    disabled: loading || model === "rabanoides" && !nombre.trim() || model === "items" && itemId === "",
                                     children: loading ? "Creating..." : "Create"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                    lineNumber: 382,
+                                    lineNumber: 462,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 364,
+                                lineNumber: 447,
                                 columnNumber: 11
                             }, this),
                             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -474,20 +659,20 @@ function TestPage() {
                                 children: error
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 392,
+                                lineNumber: 476,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                        lineNumber: 331,
+                        lineNumber: 379,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         style: styles.divider
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                        lineNumber: 395,
+                        lineNumber: 479,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -503,7 +688,7 @@ function TestPage() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 398,
+                                lineNumber: 482,
                                 columnNumber: 11
                             }, this),
                             records.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -511,7 +696,7 @@ function TestPage() {
                                 children: "No records yet."
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 403,
+                                lineNumber: 487,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                 style: styles.recordList,
@@ -520,30 +705,17 @@ function TestPage() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 style: styles.recordInfo,
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        style: styles.recordId,
-                                                        children: [
-                                                            "#",
-                                                            r.id
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                                        lineNumber: 409,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        style: styles.recordValue,
-                                                        children: recordLabel(r)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                                        lineNumber: 410,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    style: styles.recordValue,
+                                                    children: recordLabel(r)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
+                                                    lineNumber: 493,
+                                                    columnNumber: 21
+                                                }, this)
+                                            }, void 0, false, {
                                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                                lineNumber: 408,
+                                                lineNumber: 492,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -555,7 +727,7 @@ function TestPage() {
                                                         children: "Edit"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                                        lineNumber: 413,
+                                                        lineNumber: 496,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tareas$2f$desweb$2f$proyecto$2d$final$2d$web$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -564,46 +736,46 @@ function TestPage() {
                                                         children: "Delete"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                                        lineNumber: 419,
+                                                        lineNumber: 502,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                                lineNumber: 412,
+                                                lineNumber: 495,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, r.id, true, {
                                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                        lineNumber: 407,
+                                        lineNumber: 491,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                                lineNumber: 405,
+                                lineNumber: 489,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                        lineNumber: 397,
+                        lineNumber: 481,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-                lineNumber: 330,
+                lineNumber: 378,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/tareas/desweb/proyecto-final-web/src/app/test/page.tsx",
-        lineNumber: 311,
+        lineNumber: 359,
         columnNumber: 5
     }, this);
 }
-_s(TestPage, "A8vKQZdbStwR/T9q15eJtVaETCQ=");
+_s(TestPage, "56Ufv1lSIGOLItLp0iu1bBmaK3U=");
 _c = TestPage;
 var _c;
 __turbopack_context__.k.register(_c, "TestPage");
