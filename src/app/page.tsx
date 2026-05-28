@@ -1,6 +1,8 @@
 "use client";
 
 import GameEmbed from "../components/GameEmbed";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 /*itemId disponibles
 0 - Manzana verde
@@ -341,6 +343,65 @@ export default function Home() {
     }
   }
 
+  async function generatePDF() {
+    setError("");
+    try {
+      const [rabanoidesRes, itemsRes] = await Promise.all([
+        fetch(`${API_BASE}/rabanoides`),
+        fetch(`${API_BASE}/items`),
+      ]);
+      if (!rabanoidesRes.ok || !itemsRes.ok)
+        throw new Error("Failed to fetch data");
+
+      const rabanoides: Rabanoide[] = await rabanoidesRes.json();
+      const items: Item[] = await itemsRes.json();
+
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.text("Reporte - Rabanoides e Items", 14, 22);
+      doc.setFontSize(10);
+      doc.text(`Generado: ${new Date().toLocaleString()}`, 14, 30);
+
+      doc.setFontSize(14);
+      doc.text("Rabanoides", 14, 42);
+
+      autoTable(doc, {
+        startY: 46,
+        head: [["ID", "Nombre", "Color Piel", "Color Tallo"]],
+        body: rabanoides.map((r) => [
+          String(r.id),
+          r.nombre,
+          r.colorpiel,
+          r.colortallo,
+        ]),
+        styles: { fontSize: 9 },
+        headStyles: { fillColor: [30, 30, 30] },
+      });
+
+      const afterRabanoides =
+        (doc as any).lastAutoTable.finalY + 10;
+
+      doc.setFontSize(14);
+      doc.text("Items", 14, afterRabanoides);
+
+      autoTable(doc, {
+        startY: afterRabanoides + 4,
+        head: [["ID", "itemId", "Nombre"]],
+        body: items.map((i) => [
+          String(i.id),
+          String(i.itemId),
+          itemLabel(i.itemId),
+        ]),
+        styles: { fontSize: 9 },
+        headStyles: { fillColor: [30, 30, 30] },
+      });
+
+      doc.save("reporte.pdf");
+    } catch {
+      setError("Failed to generate PDF");
+    }
+  }
+
   function itemLabel(itemId: number): string {
     const opt = ITEM_OPTIONS.find((o) => o.value === itemId);
     return opt ? `${itemId} — ${opt.label}` : String(itemId);
@@ -374,19 +435,29 @@ export default function Home() {
           <div style={styles.header}>
             <h1 style={styles.title}>CRUD Test</h1>
             <div style={styles.tabs}>
+                <button
+                  style={styles.tab(model === "rabanoides")}
+                  onClick={() => setModel("rabanoides")}
+                >
+                  Rabanoide
+                </button>
+                <button
+                  style={styles.tab(model === "items")}
+                  onClick={() => setModel("items")}
+                >
+                  Item
+                </button>
+              </div>
               <button
-                style={styles.tab(model === "rabanoides")}
-                onClick={() => setModel("rabanoides")}
+                onClick={generatePDF}
+                style={{
+                  ...styles.button("primary"),
+                  marginLeft: "auto",
+                  fontSize: "12px",
+                }}
               >
-                Rabanoide
+                Generate PDF
               </button>
-              <button
-                style={styles.tab(model === "items")}
-                onClick={() => setModel("items")}
-              >
-                Item
-              </button>
-            </div>
           </div>
 
           <div style={styles.body}>
