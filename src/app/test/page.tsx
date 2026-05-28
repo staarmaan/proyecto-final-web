@@ -1,5 +1,21 @@
 "use client";
 
+/*itemId disponibles
+0 - Manzana verde
+1 - Manzana roja
+2 - Naranja
+3 - Platano
+4 - Cherrys
+5 - Tarta
+6 - Bate
+7 - Navaja
+8 - Revólver
+9 - Escudo
+10 - Bola de cañón
+11 - Craneo
+12 - Pinguino
+*/
+
 import { useState, useEffect, useCallback } from "react";
 
 type Model = "rabanoides" | "items";
@@ -20,6 +36,22 @@ type Record = Rabanoide | Item;
 
 const COLOR_PIEL_OPTIONS = ["PIEL", "AMARILLO", "ROJO", "PURPURA", "PRIETO"];
 const COLOR_TALLO_OPTIONS = ["VERDE", "AZUL", "NARANJA", "AMARILLO", "ROJO"];
+
+const ITEM_OPTIONS = [
+  { value: 0, label: "Manzana verde" },
+  { value: 1, label: "Manzana roja" },
+  { value: 2, label: "Naranja" },
+  { value: 3, label: "Platano" },
+  { value: 4, label: "Cherrys" },
+  { value: 5, label: "Tarta" },
+  { value: 6, label: "Bate" },
+  { value: 7, label: "Navaja" },
+  { value: 8, label: "Revólver" },
+  { value: 9, label: "Escudo" },
+  { value: 10, label: "Bola de cañón" },
+  { value: 11, label: "Craneo" },
+  { value: 12, label: "Pinguino" },
+];
 
 const API_BASE = "/api";
 
@@ -108,9 +140,7 @@ const styles = {
     gap: "8px",
     marginTop: "16px",
   },
-  button: (
-    variant: "primary" | "secondary" | "danger" = "primary"
-  ) => ({
+  button: (variant: "primary" | "secondary" | "danger" = "primary") => ({
     padding: "8px 16px",
     border: "none",
     borderRadius: "6px",
@@ -121,10 +151,9 @@ const styles = {
       variant === "primary"
         ? "#111"
         : variant === "danger"
-        ? "#dc2626"
-        : "#f5f5f5",
-    color:
-      variant === "primary" || variant === "danger" ? "#fff" : "#111",
+          ? "#dc2626"
+          : "#f5f5f5",
+    color: variant === "primary" || variant === "danger" ? "#fff" : "#111",
   }),
   recordList: {
     listStyle: "none",
@@ -310,10 +339,15 @@ export default function TestPage() {
     }
   }
 
+  function itemLabel(itemId: number): string {
+    const opt = ITEM_OPTIONS.find((o) => o.value === itemId);
+    return opt ? `${itemId} — ${opt.label}` : String(itemId);
+  }
+
   function recordLabel(r: Record): string {
     if (isRabanoide(r))
       return `#${r.id} ${r.nombre} — piel:${r.colorpiel} tallo:${r.colortallo}`;
-    return `#${r.id} ItemId: ${r.itemId}`;
+    return `#${r.id} ${itemLabel(r.itemId)}`;
   }
 
   function recordValue(r: Record): string {
@@ -394,14 +428,19 @@ export default function TestPage() {
             </>
           ) : (
             <div style={styles.formGroup}>
-              <label style={styles.label}>Item ID</label>
-              <input
-                style={styles.input}
-                type="number"
+              <label style={styles.label}>Item</label>
+              <select
+                style={styles.select}
                 value={itemId}
                 onChange={(e) => setItemId(e.target.value)}
-                placeholder="Enter item ID"
-              />
+              >
+                <option value="">Select an item...</option>
+                {ITEM_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.value} — {opt.label}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 
@@ -415,10 +454,7 @@ export default function TestPage() {
                 >
                   {loading ? "Saving..." : "Update"}
                 </button>
-                <button
-                  style={styles.button("secondary")}
-                  onClick={resetForm}
-                >
+                <button style={styles.button("secondary")} onClick={resetForm}>
                   Cancel
                 </button>
               </>
@@ -426,7 +462,11 @@ export default function TestPage() {
               <button
                 style={styles.button("primary")}
                 onClick={handleCreate}
-                disabled={loading || (model === "rabanoides" && !nombre.trim())}
+                disabled={
+                  loading ||
+                  (model === "rabanoides" && !nombre.trim()) ||
+                  (model === "items" && itemId === "")
+                }
               >
                 {loading ? "Creating..." : "Create"}
               </button>

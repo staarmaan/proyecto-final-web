@@ -32,6 +32,16 @@ export async function PUT(
   const { id } = await params;
   try {
     const body = await request.json();
+    if (body.itemId !== undefined) {
+      const itemId = Number(body.itemId);
+      if (!Number.isInteger(itemId) || itemId < 0 || itemId > 12) {
+        return NextResponse.json(
+          { error: "itemId must be an integer between 0 and 12" },
+          { status: 400 }
+        );
+      }
+      body.itemId = itemId;
+    }
     const item = await prisma.item.update({
       where: { id: Number(id) },
       data: body,
